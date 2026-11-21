@@ -3,7 +3,7 @@
 Team: [confirm team name]  
 Members: Álvaro Torres and Sebastián Ramorino  
 Repository: https://github.com/Seba-RC/Capstone_NextLap2026  
-Commit: [insert exact commit hash for this submitted version]
+Commit: `846f23f3fcdd9f22df88b18fe3b6bf74af0d0a3e` (Hito 2 submission)
 
 ## Evidence map
 
