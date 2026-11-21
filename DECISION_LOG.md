@@ -56,3 +56,7 @@ Individual decision: Retain the additional pace-history feature for the common v
 ## Post-Hito 2 · Experiment 1: short-history flag (rejected)
 
 Tested next check 1 by adding a binary `short_history` input (1 when `recent_std_s` is imputed) to OLS + `recent_std_s`, with the same split, validation IDs and decision rule. Pooled MAE rose from 0.365223 s to 0.369728 s (paired difference +0.004505 s, 95% driver-race cluster-bootstrap CI [+0.000847, +0.008393] s), it was worse in both races, and the short-history slice worsened from 0.416261 s to 0.453406 s. Decision: do not add the flag; OLS + `recent_std_s` remains the candidate. Likely reason: the early-stint speed-up learned from rounds 1–7 is larger than in rounds 8–9, so the flag over-corrects. Details and outputs: `experiments/README.md`, `outputs/exp1_short_history_flag/`.
+
+## Post-Hito 2 · Experiment 2: median regression + traffic gap (branch `experiment/median-traffic-gap`)
+
+Tested next check 2 and the loss mismatch (OLS minimises squared error, evaluation uses absolute error). On the same 1,808 IDs: median regression with the Hito 2 inputs lowers MAE from 0.365223 s to 0.356141 s (−0.009082 s, CI [−0.013874, −0.004509]), lower in both races. Adding `gap_ahead_s` (gap to the car ahead at the end of lap t, capped at 5 s) gives no reliable extra gain (−0.000470 s vs median alone, CI [−0.001263, +0.000323]). Proposed decision, pending team agreement before merging into `main`: adopt median regression; do not add `gap_ahead_s` in this form. Details: `experiments/README.md`.

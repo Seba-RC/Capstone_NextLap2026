@@ -1,0 +1,13 @@
+context,group,n,MAE_s · OLS + recent_std_s (Hito 2 candidate),MAE_s · A · median + recent_std_s,MAE_s · B · OLS + recent_std_s + gap_ahead_s,MAE_s · C · median + recent_std_s + gap_ahead_s
+all,all validation clean pairs,1808,0.365223,0.356141,0.365444,0.355671
+round,8,1066,0.357604,0.348080,0.357391,0.347281
+round,9,742,0.376169,0.367721,0.377015,0.367725
+feature_status,imputed_short_history,148,0.416261,0.403531,0.418398,0.408650
+feature_status,observed,1660,0.360673,0.351916,0.360723,0.350948
+current_compound,HARD,814,0.397919,0.387242,0.398349,0.387573
+current_compound,MEDIUM,861,0.317517,0.306533,0.317600,0.305506
+current_compound,SOFT,133,0.473944,0.486941,0.473790,0.485180
+gap_ahead,<1s,275,0.385036,0.381256,0.383977,0.378526
+gap_ahead,1-2s,327,0.322329,0.315770,0.322670,0.313378
+gap_ahead,2-5s,463,0.322476,0.307625,0.323191,0.307545
+gap_ahead,clear air (5s cap),743,0.403406,0.394845,0.403741,0.395816
