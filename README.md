@@ -1,6 +1,6 @@
 # Hito 2 · Capstone NextLap (IIT414W)
 
-Team: [confirm team name]  
+Team: 2 
 Members: Álvaro Torres and Sebastián Ramorino  
 Repository: https://github.com/Seba-RC/Capstone_NextLap2026  
 Commit: `846f23f3fcdd9f22df88b18fe3b6bf74af0d0a3e` (Hito 2 submission)
