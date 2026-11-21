@@ -1,0 +1,9 @@
+model,MAE_s,MAE_R8_s,MAE_R9_s,difference_vs_hito2_s,ci95_low_s,ci95_high_s,lower_in_both_races,passes_rule
+OLS + recent_std_s (Hito 2 candidate),0.365223,0.357604,0.376169,0.000000,0.000000,0.000000,False,False
+Median regression + recent_std_s (Exp. 2 A),0.356141,0.348080,0.367721,-0.009082,-0.013874,-0.004509,True,True
+Gradient boosting (absolute error) · target=raw,1.291460,1.920359,0.387948,0.926237,0.581849,1.263533,False,False
+Gradient boosting (squared error) · target=raw,1.445112,2.171615,0.401376,1.079889,0.719826,1.433513,False,False
+Random forest · target=raw,1.173260,1.710682,0.401169,0.808037,0.503262,1.109637,False,False
+Gradient boosting (absolute error) · target=delta,0.365470,0.365992,0.364720,0.000247,-0.008855,0.009417,False,False
+Gradient boosting (squared error) · target=delta,0.381808,0.379746,0.384770,0.016585,0.007404,0.025569,False,False
+Random forest · target=delta,0.375531,0.370664,0.382522,0.010308,0.002078,0.018740,False,False

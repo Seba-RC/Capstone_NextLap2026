@@ -1,0 +1,10 @@
+split,round,event_name,n,median_current_lap_s,min_next_lap_s,max_next_lap_s
+train,1,Australian Grand Prix,752,84.854,82.358,91.330
+train,2,Chinese Grand Prix,635,98.082,95.275,108.834
+train,3,Japanese Grand Prix,867,95.305,92.432,106.651
+train,4,Miami Grand Prix,688,94.258,91.869,102.264
+train,5,Canadian Grand Prix,787,77.137,74.210,86.632
+train,6,Monaco Grand Prix,1107,78.754,73.481,84.868
+train,7,Barcelona Grand Prix,936,83.667,80.122,89.432
+validation,8,Austrian Grand Prix,1066,72.852,70.374,77.875
+validation,9,British Grand Prix,742,95.475,92.390,105.128

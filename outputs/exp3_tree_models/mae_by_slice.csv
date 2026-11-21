@@ -1,0 +1,9 @@
+context,group,n,MAE_s · OLS + recent_std_s (Hito 2 candidate),MAE_s · Median regression + recent_std_s (Exp. 2 A),MAE_s · Gradient boosting (absolute error) · target=raw,MAE_s · Gradient boosting (squared error) · target=raw,MAE_s · Random forest · target=raw,MAE_s · Gradient boosting (absolute error) · target=delta,MAE_s · Gradient boosting (squared error) · target=delta,MAE_s · Random forest · target=delta
+all,all validation clean pairs,1808,0.365223,0.356141,1.291460,1.445112,1.173260,0.365470,0.381808,0.375531
+round,8,1066,0.357604,0.348080,1.920359,2.171615,1.710682,0.365992,0.379746,0.370664
+round,9,742,0.376169,0.367721,0.387948,0.401376,0.401169,0.364720,0.384770,0.382522
+feature_status,imputed_short_history,148,0.416261,0.403531,1.457925,1.666239,1.412052,0.410262,0.469499,0.464981
+feature_status,observed,1660,0.360673,0.351916,1.276619,1.425397,1.151970,0.361476,0.373990,0.367556
+current_compound,HARD,814,0.397919,0.387242,1.709392,1.854057,1.557791,0.403056,0.425555,0.421032
+current_compound,MEDIUM,861,0.317517,0.306533,0.877870,1.030524,0.793919,0.312097,0.318589,0.312649
+current_compound,SOFT,133,0.473944,0.486941,1.411042,1.626154,1.275545,0.480948,0.523320,0.504127

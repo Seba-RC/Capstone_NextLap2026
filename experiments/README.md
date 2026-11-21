@@ -55,3 +55,39 @@ python experiments/run_median_traffic_gap.py
 **Suggested decision:** adopt median regression with the Hito 2 inputs (model A); do not add `gap_ahead_s` in this form. A different traffic definition (e.g. a `< 1 s` indicator, or counting lapped cars) would be a separate, predeclared experiment.
 
 Outputs: `outputs/exp2_median_traffic_gap/` (`mae_by_slice.csv`, `comparisons.json`, `validation_predictions.csv`).
+
+## Experiment 3 · tree-based models (`run_tree_models.py`, branch `experiment/median-traffic-gap`)
+
+```bash
+python experiments/run_tree_models.py
+```
+
+**Question:** does gradient boosting or a random forest beat OLS + `recent_std_s` with the same inputs and the same 1,808 validation IDs?
+
+**Setup:** `HistGradientBoostingRegressor` (absolute-error and squared-error loss) and `RandomForestRegressor` (300 trees, `min_samples_leaf=5`), library defaults otherwise, seed 414. Inputs: the six published inputs, `recent_std_s`, and `current_lap_s − recent_mean_s`. Two targets:
+
+- **raw:** predict `next_lap_s` directly, the same target as OLS.
+- **delta:** predict `next_lap_s − recent_mean_s` and add `recent_mean_s` back, which removes each circuit's lap-time level.
+
+No hyperparameters were tuned, so the validation races were not used to pick settings.
+
+| Model | MAE (s) | R8 Austria | R9 Britain | vs Hito 2 (s) | 95% CI (s) | Passes rule |
+|---|---:|---:|---:|---:|---|---|
+| OLS + `recent_std_s` (Hito 2) | 0.365223 | 0.357604 | 0.376169 | — | — | — |
+| Median regression (Exp. 2 A) | **0.356141** | **0.348080** | 0.367721 | −0.009082 | [−0.013874, −0.004509] | **yes** |
+| Gradient boosting, absolute error · raw | 1.291460 | 1.920359 | 0.387948 | +0.926237 | [+0.581849, +1.263533] | no |
+| Gradient boosting, squared error · raw | 1.445112 | 2.171615 | 0.401376 | +1.079889 | [+0.719826, +1.433513] | no |
+| Random forest · raw | 1.173260 | 1.710682 | 0.401169 | +0.808037 | [+0.503262, +1.109637] | no |
+| Gradient boosting, absolute error · delta | 0.365470 | 0.365992 | **0.364720** | +0.000247 | [−0.008855, +0.009417] | no (tie) |
+| Gradient boosting, squared error · delta | 0.381808 | 0.379746 | 0.384770 | +0.016585 | [+0.007404, +0.025569] | no |
+| Random forest · delta | 0.375531 | 0.370664 | 0.382522 | +0.010308 | [+0.002078, +0.018740] | no |
+
+**Reading:**
+
+1. **Raw-target trees fail on Austria because they cannot extrapolate.** Austrian laps (median 72.85 s, range 70.37–77.88 s) are faster than every training circuit (medians 77.1–98.1 s; fastest training next lap 73.48 s). A tree can only predict values in the range it saw in training; no raw-target tree prediction went below 74.32 s. OLS extrapolates because it scales the recent pace linearly. See `circuit_lap_levels.csv` and `audit.json`.
+2. **Predicting the change fixes most of this, but does not beat OLS.** Absolute-error boosting on the delta target ties the Hito 2 model (+0.0002 s, CI crossing zero): better in Britain, worse in Austria. Squared-error boosting and the random forest are worse.
+3. **The signal is mostly linear.** Consistent with the Hito 2 SHAP results, recent pace level explains most of each prediction; the large errors left over are sudden events that no current input signals. With 5,772 rows from 7 circuits, flexible models have little extra structure to learn.
+
+**Decision:** keep a linear model; median regression (Exp. 2 A) remains the best candidate. Revisit tree models only if new information is added (e.g. a different traffic definition or driver-specific history), using absolute-error boosting on the delta target and tuning by leave-one-race-out within rounds 1–7 only.
+
+Outputs: `outputs/exp3_tree_models/` (`model_comparison.csv`, `mae_by_slice.csv`, `circuit_lap_levels.csv`, `audit.json`, `validation_predictions.csv`).

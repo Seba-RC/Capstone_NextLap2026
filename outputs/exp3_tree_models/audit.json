@@ -1,0 +1,13 @@
+{
+  "training_target_range_s": [
+    73.481,
+    108.834
+  ],
+  "validation_R8_target_range_s": [
+    70.374,
+    77.875
+  ],
+  "min_raw_target_tree_prediction_s": 74.32322266577603,
+  "hyperparameters_tuned": false,
+  "seed": 414
+}
