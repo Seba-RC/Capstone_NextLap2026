@@ -1,0 +1,9 @@
+context,group,n,MAE_s · OLS reference,MAE_s · OLS + recent_std_s (Hito 2 candidate),MAE_s · OLS + recent_std_s + short_history
+all,all validation clean pairs,1808,0.386707,0.365223,0.369728
+round,8,1066,0.373571,0.357604,0.358793
+round,9,742,0.405579,0.376169,0.385439
+feature_status,imputed_short_history,148,0.395886,0.416261,0.453406
+feature_status,observed,1660,0.385889,0.360673,0.362268
+current_compound,HARD,814,0.424496,0.397919,0.406848
+current_compound,MEDIUM,861,0.327214,0.317517,0.319690
+current_compound,SOFT,133,0.540563,0.473944,0.466480

@@ -1,0 +1,16 @@
+{
+  "comparison": "OLS + recent_std_s + short_history  vs  OLS + recent_std_s",
+  "validation_n": 1808,
+  "MAE_without_flag_s": 0.3652230305705972,
+  "MAE_with_flag_s": 0.36972818145613706,
+  "paired_difference_flag_minus_no_flag_s": 0.0045051508855398666,
+  "bootstrap_95ci_s": [
+    0.0008470840947382754,
+    0.008393346773033359
+  ],
+  "bootstrap_groups_driver_race": 43,
+  "lower_in_every_race": false,
+  "rule_1_lower_pooled_MAE": false,
+  "rule_3_ci_below_zero": false,
+  "keep_flag": false
+}

@@ -16,6 +16,7 @@ Commit: `846f23f3fcdd9f22df88b18fe3b6bf74af0d0a3e` (Hito 2 submission)
 | Local and global SHAP | `HITO2.md` §3; `outputs/shap_local_case.csv`; `outputs/shap_local_case_metadata.csv`; `outputs/shap_global_summary.csv`; `outputs/shap_global_summary.png` |
 | Reproducibility and audit | `run_hito2.py`; `outputs/run_audit.json`; `requirements.txt`; `base_NextLap/` |
 | Decisions, AI record and individual explanations | `DECISION_LOG.md`; `HITO2.md` §4 |
+| Post-Hito 2 experiments | `experiments/README.md`; `outputs/exp*/` |
 
 ## Data
 

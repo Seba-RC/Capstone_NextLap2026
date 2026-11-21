@@ -52,3 +52,7 @@ Individual decision: Retain the additional pace-history feature for the common v
 2. Inspect other large residuals and test whether any additional context is observable by the end of lap t.
 3. If any restricted-population comparison is added, label it separately and report its row count and coverage.
 4. Record instructor feedback and the corresponding final correction or justified decision to retain the design in the final report due 22 November.
+
+## Post-Hito 2 · Experiment 1: short-history flag (rejected)
+
+Tested next check 1 by adding a binary `short_history` input (1 when `recent_std_s` is imputed) to OLS + `recent_std_s`, with the same split, validation IDs and decision rule. Pooled MAE rose from 0.365223 s to 0.369728 s (paired difference +0.004505 s, 95% driver-race cluster-bootstrap CI [+0.000847, +0.008393] s), it was worse in both races, and the short-history slice worsened from 0.416261 s to 0.453406 s. Decision: do not add the flag; OLS + `recent_std_s` remains the candidate. Likely reason: the early-stint speed-up learned from rounds 1–7 is larger than in rounds 8–9, so the flag over-corrects. Details and outputs: `experiments/README.md`, `outputs/exp1_short_history_flag/`.
