@@ -1,0 +1,7 @@
+model,population,rows,MAE_s
+ols_reference_ablation,validation rounds 8-9 (clean pairs),1808,0.386707
+ols_reference_ablation,round 8 Austrian Grand Prix (clean pairs),1066,0.373571
+ols_reference_ablation,round 9 British Grand Prix (clean pairs),742,0.405579
+ols_plus_recent_std_s,validation rounds 8-9 (clean pairs),1808,0.365223
+ols_plus_recent_std_s,round 8 Austrian Grand Prix (clean pairs),1066,0.357604
+ols_plus_recent_std_s,round 9 British Grand Prix (clean pairs),742,0.376169

@@ -1,0 +1,2 @@
+run_utc,candidate,window,model,validation_rows,MAE_reference_s,MAE_augmented_s,difference_s,ci95_low_s,ci95_high_s,difference_round8_s,difference_round9_s,rows_feature_observed,rows_feature_imputed,hypothesis_supported
+2026-11-11T23:48:42+00:00,recent_std_s,3,OLS,1808,0.386707,0.365223,-0.021484,-0.031503,-0.012860,-0.015967,-0.029410,1660,148,True

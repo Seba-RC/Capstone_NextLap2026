@@ -1,0 +1,2 @@
+pair_id,round,event,driver_number,current_lap_number,current_compound,recent_count,recent_std_s,observed_next_lap_s,candidate_prediction_s,candidate_absolute_error_s,control_prediction_s,control_absolute_error_s
+2026-R9-23-L6,9,British Grand Prix,23,6,HARD,3,0.979324767,105.128000000,96.825754241,8.302245759,97.302929497,7.825070503

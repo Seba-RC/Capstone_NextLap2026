@@ -1,0 +1,41 @@
+{
+  "data_release": "IIT414W_Capstone_NextLap_StudentData_v1 / StudentPack v2 files",
+  "manifest_season": 2026,
+  "training_rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "validation_rounds": [
+    8,
+    9
+  ],
+  "training_n": 5772,
+  "validation_n": 1808,
+  "validation_round_counts": {
+    "8": 1066,
+    "9": 742
+  },
+  "train_validation_pair_id_overlap": 0,
+  "validation_pair_id_unique": true,
+  "validation_id_coverage": 1808,
+  "reference_predictions_match_hito1": true,
+  "candidate_predictions_match_hito1": true,
+  "candidate_control_MAE_difference_s_control_minus_candidate": 0.021483919793446105,
+  "candidate_rows_feature_observed": 1660,
+  "candidate_rows_feature_imputed": 148,
+  "shap_explainer": "shap.LinearExplainer",
+  "shap_background_n": 200,
+  "shap_validation_sample_n": 1808,
+  "shap_max_reconstruction_abs_error_s": 1.4210854715202004e-14,
+  "python": "3.13.5",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "scikit_learn": "1.8.0",
+  "shap": "0.50.0",
+  "random_seed": 414
+}

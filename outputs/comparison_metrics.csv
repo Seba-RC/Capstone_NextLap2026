@@ -1,0 +1,7 @@
+version,population,n,MAE_s
+OLS reference / matched control,all validation clean pairs,1808,0.386706950
+OLS reference / matched control,round_8_Austrian Grand Prix,1066,0.373570557
+OLS reference / matched control,round_9_British Grand Prix,742,0.405579451
+OLS + recent_std_s,all validation clean pairs,1808,0.365223031
+OLS + recent_std_s,round_8_Austrian Grand Prix,1066,0.357603852
+OLS + recent_std_s,round_9_British Grand Prix,742,0.376169182

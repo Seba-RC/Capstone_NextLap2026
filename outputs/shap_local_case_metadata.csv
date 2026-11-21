@@ -1,0 +1,2 @@
+pair_id,model,prediction_s,base_value_s,sum_SHAP_s,base_plus_SHAP_s,reconstruction_abs_difference_s,observed_next_lap_s,absolute_prediction_error_s,explainer,background_rows,background_source
+2026-R9-23-L6,OLS + recent_std_s,96.825754241,84.976870809,11.848883432,96.825754241,0.000000000,105.128000000,8.302245759,shap.LinearExplainer,200,random sample without replacement from training rows after fitted preprocessing

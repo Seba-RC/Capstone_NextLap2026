@@ -1,0 +1,3 @@
+round,event,n,control_MAE_s,candidate_MAE_s,control_minus_candidate_s
+8,Austrian Grand Prix,1066,0.373570557,0.357603852,0.015966705
+9,British Grand Prix,742,0.405579451,0.376169182,0.029410268

@@ -1,0 +1,6 @@
+round,event_name,driver_number,lap_number,lap_time_s,end_time_s,stint,compound,track_status,is_accurate,pit_in,pit_out,deleted
+9,British Grand Prix,23,4.000000000,96.460000000,3807.808000000,2.000000000,HARD,1,True,False,False,False
+9,British Grand Prix,23,5.000000000,96.299000000,3904.107000000,2.000000000,HARD,1,True,False,False,False
+9,British Grand Prix,23,6.000000000,98.070000000,4002.177000000,2.000000000,HARD,1,True,False,False,False
+9,British Grand Prix,23,7.000000000,105.128000000,4107.305000000,2.000000000,HARD,1,True,False,False,False
+9,British Grand Prix,23,8.000000000,97.882000000,4205.187000000,2.000000000,HARD,1,True,False,False,False

@@ -1,0 +1,10 @@
+model,population,rows,MAE_s
+training_median,validation rounds 8-9 (clean pairs),1808,11.376111
+training_median,round 8 Austrian Grand Prix (clean pairs),1066,11.715781
+training_median,round 9 British Grand Prix (clean pairs),742,10.888121
+persistence,validation rounds 8-9 (clean pairs),1808,0.409289
+persistence,round 8 Austrian Grand Prix (clean pairs),1066,0.400516
+persistence,round 9 British Grand Prix (clean pairs),742,0.421892
+ols_reference,validation rounds 8-9 (clean pairs),1808,0.386707
+ols_reference,round 8 Austrian Grand Prix (clean pairs),1066,0.373571
+ols_reference,round 9 British Grand Prix (clean pairs),742,0.405579

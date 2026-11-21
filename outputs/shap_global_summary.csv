@@ -1,0 +1,8 @@
+feature,mean_abs_SHAP_s,mean_signed_SHAP_s,encoded_columns,validation_sample_n
+recent_mean_s,7.257213879,-1.755409974,1,1808
+current_lap_s,4.101725061,-0.963811560,1,1808
+recent_std_s,0.129882747,0.023365829,1,1808
+current_team,0.059194832,0.004064040,11,1808
+current_compound,0.032244426,0.011078999,3,1808
+current_tyre_life,0.022917112,-0.011603850,1,1808
+current_lap_number,0.022812873,-0.001273300,1,1808

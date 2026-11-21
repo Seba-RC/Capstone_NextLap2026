@@ -1,0 +1,95 @@
+
+COMPARISON
+                        version                  population    n    MAE_s
+OLS reference / matched control  all validation clean pairs 1808 0.386707
+OLS reference / matched control round_8_Austrian Grand Prix 1066 0.373571
+OLS reference / matched control  round_9_British Grand Prix  742 0.405579
+             OLS + recent_std_s  all validation clean pairs 1808 0.365223
+             OLS + recent_std_s round_8_Austrian Grand Prix 1066 0.357604
+             OLS + recent_std_s  round_9_British Grand Prix  742 0.376169
+
+RACE COMPARISON
+ round               event    n  control_MAE_s  candidate_MAE_s  control_minus_candidate_s
+     8 Austrian Grand Prix 1066       0.373571         0.357604                   0.015967
+     9  British Grand Prix  742       0.405579         0.376169                   0.029410
+
+CONTEXT SLICES
+         context                 group    n  control_MAE_s  candidate_MAE_s  control_minus_candidate_s
+  feature_status imputed_short_history  148       0.395886         0.416261                  -0.020375
+  feature_status              observed 1660       0.385889         0.360673                   0.025216
+current_compound                  HARD  814       0.424496         0.397919                   0.026576
+current_compound                MEDIUM  861       0.327214         0.317517                   0.009697
+current_compound                  SOFT  133       0.540563         0.473944                   0.066619
+           round                     8 1066       0.373571         0.357604                   0.015967
+           round                     9  742       0.405579         0.376169                   0.029410
+
+INSPECTED CASE
+      pair_id  round              event driver_number  current_lap_number current_compound  recent_count  recent_std_s  observed_next_lap_s  candidate_prediction_s  candidate_absolute_error_s  control_prediction_s  control_absolute_error_s
+2026-R9-23-L6      9 British Grand Prix            23                   6             HARD             3      0.979325              105.128               96.825754                    8.302246             97.302929                  7.825071
+
+GLOBAL SHAP
+           feature  mean_abs_SHAP_s  mean_signed_SHAP_s  encoded_columns  validation_sample_n
+     recent_mean_s         7.257214           -1.755410                1                 1808
+     current_lap_s         4.101725           -0.963812                1                 1808
+      recent_std_s         0.129883            0.023366                1                 1808
+      current_team         0.059195            0.004064               11                 1808
+  current_compound         0.032244            0.011079                3                 1808
+ current_tyre_life         0.022917           -0.011604                1                 1808
+current_lap_number         0.022813           -0.001273                1                 1808
+
+LOCAL SHAP METADATA
+      pair_id              model  prediction_s  base_value_s  sum_SHAP_s  base_plus_SHAP_s  reconstruction_abs_difference_s  observed_next_lap_s  absolute_prediction_error_s            explainer  background_rows                                                               background_source
+2026-R9-23-L6 OLS + recent_std_s     96.825754     84.976871   11.848883         96.825754                     1.421085e-14              105.128                     8.302246 shap.LinearExplainer              200 random sample without replacement from training rows after fitted preprocessing
+
+LOCAL SHAP CONTRIBUTIONS
+           feature  signed_SHAP_contribution_s
+     recent_mean_s                    7.536491
+     current_lap_s                    4.694683
+      recent_std_s                   -0.340734
+  current_compound                    0.048113
+ current_tyre_life                   -0.037664
+current_lap_number                   -0.035224
+      current_team                   -0.016782
+
+AUDIT
+{
+  "data_release": "IIT414W_Capstone_NextLap_StudentData_v1 / StudentPack v2 files",
+  "manifest_season": 2026,
+  "training_rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "validation_rounds": [
+    8,
+    9
+  ],
+  "training_n": 5772,
+  "validation_n": 1808,
+  "validation_round_counts": {
+    "8": 1066,
+    "9": 742
+  },
+  "train_validation_pair_id_overlap": 0,
+  "validation_pair_id_unique": true,
+  "validation_id_coverage": 1808,
+  "reference_predictions_match_hito1": true,
+  "candidate_predictions_match_hito1": true,
+  "candidate_control_MAE_difference_s_control_minus_candidate": 0.021483919793446105,
+  "candidate_rows_feature_observed": 1660,
+  "candidate_rows_feature_imputed": 148,
+  "shap_explainer": "shap.LinearExplainer",
+  "shap_background_n": 200,
+  "shap_validation_sample_n": 1808,
+  "shap_max_reconstruction_abs_error_s": 1.4210854715202004e-14,
+  "python": "3.13.5",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "scikit_learn": "1.8.0",
+  "shap": "0.50.0",
+  "random_seed": 414
+}
