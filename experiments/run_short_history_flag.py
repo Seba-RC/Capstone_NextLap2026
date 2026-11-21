@@ -119,7 +119,10 @@ def main():
         'short_rows_speed_up_range_s': [float(loro.short_rows_mean_next_minus_current_s.min()),
                                         float(loro.short_rows_mean_next_minus_current_s.max())],
     }
+    s_diff, s_low, s_high, _ = cluster_bootstrap_ci(val_x, med_err['median_control'], med_err['median_std'])
     decision['median_regression_check'] = {
+        'MAE_median_control_without_recent_std_s': float(med_err['median_control'].mean()),
+        'recent_std_s_effect_under_median_s': s_diff, 'recent_std_s_effect_bootstrap_95ci_s': [s_low, s_high],
         'MAE_median_std_s': float(med_err['median_std'].mean()),
         'MAE_median_std_flag_s': float(med_err['median_std_flag'].mean()),
         'paired_difference_flag_minus_no_flag_s': m_diff, 'bootstrap_95ci_s': [m_low, m_high],

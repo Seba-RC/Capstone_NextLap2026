@@ -23,6 +23,12 @@
     ]
   },
   "median_regression_check": {
+    "MAE_median_control_without_recent_std_s": 0.3872849171354821,
+    "recent_std_s_effect_under_median_s": -0.031144041041176483,
+    "recent_std_s_effect_bootstrap_95ci_s": [
+      -0.04068206822481948,
+      -0.0218614450279356
+    ],
     "MAE_median_std_s": 0.3561408760943056,
     "MAE_median_std_flag_s": 0.3550050472395483,
     "paired_difference_flag_minus_no_flag_s": -0.0011358288547572988,
