@@ -78,7 +78,58 @@ def main():
         out[f'pred · {name}'] = p
     out.to_csv(OUT / 'validation_predictions.csv', index=False, float_format='%.6f')
 
+    # Check 2 (training rounds only, no validation data): leave one training round out.
+    # Does the flag help consistently on unseen circuits, and is the early-stint speed-up it
+    # learns stable across circuits?
+    loro_rows = []
+    for held_out in sorted(train_x['round'].unique()):
+        fit_part, test_part = train_x[train_x['round'] != held_out], train_x[train_x['round'] == held_out]
+        y_test = test_part[ref.TARGET].to_numpy()
+        short = test_part[FLAG].to_numpy() == 1
+        err = {}
+        for label, numeric in [('no_flag', candidate_numeric), ('flag', flagged_numeric)]:
+            model = ref.make_model('OLS', numeric=numeric)
+            err[label] = np.abs(y_test - fit_predict(model, fit_part, test_part, numeric + ref.CATEGORICAL))
+        loro_rows.append({
+            'held_out_round': int(held_out), 'event': test_part.event_name.iloc[0], 'n': len(test_part),
+            'n_short_history': int(short.sum()),
+            'MAE_no_flag_s': err['no_flag'].mean(), 'MAE_flag_s': err['flag'].mean(),
+            'flag_minus_no_flag_s': err['flag'].mean() - err['no_flag'].mean(),
+            'short_rows_MAE_no_flag_s': err['no_flag'][short].mean(), 'short_rows_MAE_flag_s': err['flag'][short].mean(),
+            'short_rows_mean_next_minus_current_s': float((test_part[ref.TARGET] - test_part.current_lap_s)[short].mean()),
+        })
+    loro = pd.DataFrame(loro_rows)
+    loro.to_csv(OUT / 'loro_training_check.csv', index=False, float_format='%.6f')
+    pooled_loro = float((loro.flag_minus_no_flag_s * loro.n).sum() / loro.n.sum())
+
+    # Check 3: does the flag pass under median regression (Experiment 2's loss)?
+    from sklearn.linear_model import QuantileRegressor
+    med_err = {}
+    for label, numeric in [('median_control', reference_numeric), ('median_std', candidate_numeric),
+                           ('median_std_flag', flagged_numeric)]:
+        model = ref.make_model('OLS', numeric=numeric).set_params(
+            regression=QuantileRegressor(quantile=0.5, alpha=0.0, solver='highs'))
+        med_err[label] = np.abs(y - fit_predict(model, train_x, val_x, numeric + ref.CATEGORICAL))
+    m_diff, m_low, m_high, _ = cluster_bootstrap_ci(val_x, med_err['median_std'], med_err['median_std_flag'])
+    m_races = pd.DataFrame({'r': val_x['round'], 'a': med_err['median_std'], 'b': med_err['median_std_flag']}).groupby('r').mean()
+    decision['training_loro_check'] = {
+        'pooled_flag_minus_no_flag_s': pooled_loro,
+        'held_out_rounds_where_flag_lower': int((loro.flag_minus_no_flag_s < 0).sum()),
+        'held_out_rounds': int(len(loro)),
+        'short_rows_speed_up_range_s': [float(loro.short_rows_mean_next_minus_current_s.min()),
+                                        float(loro.short_rows_mean_next_minus_current_s.max())],
+    }
+    decision['median_regression_check'] = {
+        'MAE_median_std_s': float(med_err['median_std'].mean()),
+        'MAE_median_std_flag_s': float(med_err['median_std_flag'].mean()),
+        'paired_difference_flag_minus_no_flag_s': m_diff, 'bootstrap_95ci_s': [m_low, m_high],
+        'lower_in_every_race': bool((m_races.b < m_races.a).all()),
+        'passes_rule': bool(m_diff < 0 and m_high < 0 and (m_races.b < m_races.a).all()),
+    }
+    (OUT / 'decision.json').write_text(json.dumps(decision, indent=2), encoding='utf-8')
+
     print(slices.to_string(index=False))
+    print(loro.round(6).to_string(index=False))
     print(json.dumps(decision, indent=2))
 
 

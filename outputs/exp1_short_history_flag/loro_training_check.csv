@@ -1,0 +1,8 @@
+held_out_round,event,n,n_short_history,MAE_no_flag_s,MAE_flag_s,flag_minus_no_flag_s,short_rows_MAE_no_flag_s,short_rows_MAE_flag_s,short_rows_mean_next_minus_current_s
+1,Australian Grand Prix,752,75,0.496346,0.498589,0.002243,0.730589,0.744798,-0.253520
+2,Chinese Grand Prix,635,53,0.421388,0.410965,-0.010423,0.767392,0.682765,-0.625472
+3,Japanese Grand Prix,867,48,0.367844,0.369923,0.002078,0.669999,0.647605,-0.384063
+4,Miami Grand Prix,688,60,0.373940,0.378281,0.004340,0.672149,0.711391,-0.283583
+5,Canadian Grand Prix,787,83,0.685019,0.675354,-0.009665,1.102541,0.919535,-0.702976
+6,Monaco Grand Prix,1107,53,0.581297,0.577701,-0.003596,0.989124,0.764673,-0.654849
+7,Barcelona Grand Prix,936,84,0.459503,0.454951,-0.004552,0.562742,0.776091,0.149310

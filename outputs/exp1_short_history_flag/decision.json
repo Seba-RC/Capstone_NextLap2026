@@ -12,5 +12,25 @@
   "lower_in_every_race": false,
   "rule_1_lower_pooled_MAE": false,
   "rule_3_ci_below_zero": false,
-  "keep_flag": false
+  "keep_flag": false,
+  "training_loro_check": {
+    "pooled_flag_minus_no_flag_s": -0.0027706281961924423,
+    "held_out_rounds_where_flag_lower": 4,
+    "held_out_rounds": 7,
+    "short_rows_speed_up_range_s": [
+      -0.702975903614457,
+      0.14930952380952384
+    ]
+  },
+  "median_regression_check": {
+    "MAE_median_std_s": 0.3561408760943056,
+    "MAE_median_std_flag_s": 0.3550050472395483,
+    "paired_difference_flag_minus_no_flag_s": -0.0011358288547572988,
+    "bootstrap_95ci_s": [
+      -0.00406324577257709,
+      0.0018232841271893078
+    ],
+    "lower_in_every_race": false,
+    "passes_rule": false
+  }
 }

@@ -22,7 +22,13 @@ Paired difference (flag − no flag): **+0.004505 s**, 95% cluster-bootstrap CI 
 
 **Why it fails:** in the training races, the lap after a short-history lap is on average 0.369 s faster than the current lap (median 0.252 s), so the flag learns a large negative shift (≈ −0.389 s per flagged row). In the two validation races that speed-up is much smaller (mean 0.127 s, median 0.100 s), so the flag over-corrects and the short-history slice gets worse (0.416 → 0.453 s). The effect of being early in a stint does not transfer well between circuits. This is a validation-informed observation, not a causal claim.
 
-Outputs: `outputs/exp1_short_history_flag/` (`mae_by_slice.csv`, `decision.json`, `validation_predictions.csv`).
+**Check on training data only (leave one of rounds 1–7 out).** The flag is lower in 4 of 7 held-out rounds, pooled −0.002771 s. The early-stint change it relies on (mean next minus current lap on short-history rows) ranges from −0.703 s (Canada) to +0.149 s (Barcelona). The effect is circuit-dependent, which explains why one learned shift does not transfer to Austria and Britain.
+
+**Check under median regression (Experiment 2's loss).** Median + `recent_std_s` + flag: 0.355005 s vs 0.356141 s without the flag. The difference is −0.001136 s, CI [−0.004063, +0.001823], and it is worse in Britain, so it fails the rule here too.
+
+**Decision:** retain the Hito 2 candidate without the flag. This is the response to the Demo Day / Hito 2 feedback recorded in `DECISION_LOG.md`.
+
+Outputs: `outputs/exp1_short_history_flag/` (`mae_by_slice.csv`, `decision.json`, `loro_training_check.csv`, `validation_predictions.csv`).
 
 ## Experiment 2 · median regression + traffic gap (`run_median_traffic_gap.py`, branch `experiment/median-traffic-gap`)
 
@@ -52,7 +58,7 @@ python experiments/run_median_traffic_gap.py
 
 **Reading:** the whole improvement comes from switching to median regression (about 2.5% lower MAE than the Hito 2 candidate, 7.6% lower than the OLS reference). It also helps the short-history slice the flag could not fix. `gap_ahead_s` does not add a reliable gain under either loss; its fitted effect in model C is tiny (−0.008 s of next-lap time per extra second of gap). C passes against the Hito 2 candidate only because it contains A. The SOFT slice (133 rows) is worse under median regression; it is small, so read it with caution.
 
-**Suggested decision:** adopt median regression with the Hito 2 inputs (model A); do not add `gap_ahead_s` in this form. A different traffic definition (e.g. a `< 1 s` indicator, or counting lapped cars) would be a separate, predeclared experiment.
+**Decision:** do not add `gap_ahead_s` in this form. Median regression is the strongest exploratory result, but it was tried after seeing the validation races. It is recorded as the next candidate to confirm on data not used to choose it, not adopted as the final model. A different traffic definition (e.g. a `< 1 s` indicator, or counting lapped cars) would be a separate, predeclared experiment.
 
 Outputs: `outputs/exp2_median_traffic_gap/` (`mae_by_slice.csv`, `comparisons.json`, `validation_predictions.csv`).
 
@@ -88,6 +94,6 @@ No hyperparameters were tuned, so the validation races were not used to pick set
 2. **Predicting the change fixes most of this, but does not beat OLS.** Absolute-error boosting on the delta target ties the Hito 2 model (+0.0002 s, CI crossing zero): better in Britain, worse in Austria. Squared-error boosting and the random forest are worse.
 3. **The signal is mostly linear.** Consistent with the Hito 2 SHAP results, recent pace level explains most of each prediction; the large errors left over are sudden events that no current input signals. With 5,772 rows from 7 circuits, flexible models have little extra structure to learn.
 
-**Decision:** keep a linear model; median regression (Exp. 2 A) remains the best candidate. Revisit tree models only if new information is added (e.g. a different traffic definition or driver-specific history), using absolute-error boosting on the delta target and tuning by leave-one-race-out within rounds 1–7 only.
+**Decision:** keep a linear model. Revisit tree models only if new information is added (e.g. a different traffic definition or driver-specific history), using absolute-error boosting on the delta target and tuning by leave-one-race-out within rounds 1–7 only.
 
 Outputs: `outputs/exp3_tree_models/` (`model_comparison.csv`, `mae_by_slice.csv`, `circuit_lap_levels.csv`, `audit.json`, `validation_predictions.csv`).
